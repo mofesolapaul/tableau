@@ -1,0 +1,33 @@
+html,
+body {
+    height: 100%;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+}
+
+body {
+    font-family: 'Lucida Sans Unicode', "Lucida Grande", sans-serif;
+    font-size: 14px;
+}
+
+table {
+    border-collapse: collapse;
+    min-width: 100%;
+    thead {
+        border-bottom: solid 3px #ccc;
+        text-align: left;
+        th {
+            padding: .5rem;
+        }
+    }
+    tbody {
+        td {
+            padding: .5rem;
+            background: lighten(#ccc, 15%);
+            &:nth-child(odd) {
+                background: lighten(#ccc, 10%);
+            }
+        }
+    }
+}
