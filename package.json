@@ -1,0 +1,11 @@
+{
+  "name": "tableau",
+  "version": "1.0.0",
+  "description": "Experiment in a bid to produce a custom-design table for presenting large data",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Banjo Mofesola Paul",
+  "license": "ISC"
+}
