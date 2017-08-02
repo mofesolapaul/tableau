@@ -11,23 +11,38 @@ body {
     font-size: 14px;
 }
 
-table {
-    border-collapse: collapse;
-    min-width: 100%;
-    thead {
-        border-bottom: solid 3px #ccc;
-        text-align: left;
-        th {
-            padding: .5rem;
-        }
-    }
-    tbody {
-        td {
-            padding: .5rem;
-            background: lighten(#ccc, 15%);
-            &:nth-child(odd) {
-                background: lighten(#ccc, 10%);
+.tableau {
+    &:not(table) {
+        min-width: 100%;
+        table {
+            -webkit-appearance: none;
+            border-collapse: collapse;
+            thead,
+            tbody {
+                display: block;
+            }
+            thead {
+                border-bottom: solid 3px #ccc;
+                text-align: left;
+                th {
+                    padding: .5rem;
+                    background: #fff;
+                }
+            }
+            tbody {
+                td {
+                    padding: .5rem;
+                    background: lighten(#ccc, 15%);
+                    width: 150px;
+                    &:nth-child(odd) {
+                        background: lighten(#ccc, 10%);
+                    }
+                }
             }
         }
     }
+}
+
+table.tableau {
+    display: none;
 }
