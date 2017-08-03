@@ -32,19 +32,16 @@ $(() => {
 
         // ensure the stability of first column
         firstCol.css({
-            position: 'absolute',
+            position: 'relative',
             left: 0
         })
-
-        // allow for the fix-positioned first column
-        tbody.css('paddingLeft', firstCol.width())
 
         // on scroll
         tableau.scroll(function (e) {
             let _left = $(this).scrollLeft()
             let _top = $(this).scrollTop()
             thead.css('left', -_left)
-            firstCol.css('left', _left)
+            firstCol.css({left: _left})
             if (_left != 0) firstCol.addClass('floating')
             else firstCol.removeClass('floating')
         })
@@ -56,7 +53,6 @@ $(() => {
             cellWidth = tableau.width() / colCount
             cellWidth = cellWidth < minCellWidth ? minCellWidth : cellWidth // normalize width
             thtd.css('width', cellWidth)
-            tbody.css('paddingLeft', cellWidth)
         }
     })
 })
