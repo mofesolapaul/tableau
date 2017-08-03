@@ -13,7 +13,9 @@ body {
 
 .tableau {
     &:not(table) {
-        min-width: 100%;
+        width: 100%;
+        height: 100%;
+        overflow: auto;
         table {
             -webkit-appearance: none;
             border-collapse: collapse;
@@ -39,19 +41,24 @@ body {
             }
             thead {
                 text-align: left;
+                min-width: 100%;
+                position: fixed;
+                z-index: 999;
+                top: 0;
+                left: 0;
                 th {
                     border-bottom: solid 3px #ccc;
                     padding: .5rem;
                     background: #fff;
-                    width: 50%;
                     display: inline-block;
                     box-sizing: border-box
                 }
             }
             tbody {
                 width: 100%;
+                position: relative;
+                box-sizing: border-box;
                 td {
-                    width: 50%;
                     padding: .5rem;
                     background: lighten(#ccc, 15%);
                     display: inline-block;
