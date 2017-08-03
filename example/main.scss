@@ -1,4 +1,10 @@
 tr {
+    td {
+        background: lighten(#ccc, 5%) !important;
+        &:nth-child(odd) {
+            background: #ccc !important;
+        }
+    }
     &:hover {
         td {
             background: lighten(orange, 20%) !important;

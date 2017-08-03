@@ -6,13 +6,11 @@ let Tableau = function (config = {}) {
     }
 
     // scan the config
-    config = $.extend(config, {
+    $.extend({
         minCellWidth: 240,
         bordered: true,
         firstColumnWidth: null
-    })
-
-    console.log(config)
+    }, config)
 
     // wrap tableaus in tableaus, and de-bleau them
     $('table.tableau').each(function (i, t) {
@@ -22,7 +20,7 @@ let Tableau = function (config = {}) {
         // clone the original table
         let tableau = $('<div></div>').addClass('tableau')
         let inner = $('<div></div>').addClass('tableau-inner')
-        let table = $(t).clone().removeClass('tableau').addClass(config.bordered ? 'bordered' : '')
+        let table = $(t).clone().removeClass('tableau')
 
         // place the tableau
         table.appendTo(inner)
@@ -58,6 +56,9 @@ let Tableau = function (config = {}) {
             firstCol = $('td:first-of-type', tbody)
             colCount = $('tr:first-of-type>th', thead).length
             thtd = $('th,td', tableau)
+
+            // bordered?
+            table.addClass(config.bordered ? 'bordered' : '')
 
             // include the first column in the header
             firstCol.push($('th:first-of-type', thead)[0])
