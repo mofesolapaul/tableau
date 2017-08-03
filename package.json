@@ -2,10 +2,29 @@
   "name": "tableau",
   "version": "1.0.0",
   "description": "Experiment in a bid to produce a custom-design table for presenting large data",
-  "main": "index.js",
+  "main": "src/tableau.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+      "uglify": "uglifyjs src/tableau.js --mangle -o dist/tableau.min.js",
+      "scss": "sass --watch --style=compressed --sourcemap=none src:dist"
   },
   "author": "Banjo Mofesola Paul",
-  "license": "MIT"
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mofesolapaul/tableau.git"
+  },
+  "keywords": [
+    "jquery-plugin",
+    "tables",
+    "data-presentation",
+    "spreadsheet",
+    "tableau",
+    "devcrib",
+    "planet-nest",
+    "de-paule"
+  ],
+  "bugs": {
+    "url": "https://github.com/mofesolapaul/tableau/issues"
+  },
+  "homepage": "https://github.com/mofesolapaul/tableau#readme"
 }
