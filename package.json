@@ -5,7 +5,7 @@
   "main": "src/tableau.js",
   "scripts": {
       "uglify": "uglifyjs src/tableau.js --mangle -o dist/tableau.min.js",
-      "scss": "sass --watch --style=compressed --sourcemap=none src:dist"
+      "scss": "sass --watch --style=compressed --sourcemap=none src:dist example:example"
   },
   "author": "Banjo Mofesola Paul",
   "license": "MIT",

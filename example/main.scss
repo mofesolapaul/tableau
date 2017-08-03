@@ -1,0 +1,11 @@
+tr {
+    &:hover {
+        td {
+            background: lighten(orange, 20%) !important;
+            color: #fff;
+            &:hover {
+                background: lighten(orange, 10%) !important
+            }
+        }
+    }
+}
