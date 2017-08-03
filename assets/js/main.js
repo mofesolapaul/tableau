@@ -7,7 +7,7 @@ $(() => {
         // clone the original table
         let tableau = $('<div></div>').addClass('tableau')
         let inner = $('<div></div>').addClass('tableau-inner')
-        let table = $(t).clone().removeClass('tableau')
+        let table = $(t).clone().removeClass('tableau').addClass('bordered')
 
         // place the tableau
         table.appendTo(inner)
@@ -27,9 +27,6 @@ $(() => {
         // include the first column in the header
         firstCol.push($('th:first-of-type', thead)[0])
 
-        // allow for the fix-positioned header
-        inner.css('marginTop', thead.height())
-
         // ensure the stability of first column
         firstCol.css({
             position: 'relative',
@@ -41,7 +38,9 @@ $(() => {
             let _left = $(this).scrollLeft()
             let _top = $(this).scrollTop()
             thead.css('left', -_left)
-            firstCol.css({left: _left})
+            firstCol.css({
+                left: _left
+            })
             if (_left != 0) firstCol.addClass('floating')
             else firstCol.removeClass('floating')
         })
@@ -53,6 +52,8 @@ $(() => {
             cellWidth = tableau.width() / colCount
             cellWidth = cellWidth < minCellWidth ? minCellWidth : cellWidth // normalize width
             thtd.css('width', cellWidth)
+            // allow for the fix-positioned header
+            inner.css('marginTop', thead.height())
         }
     })
 })
