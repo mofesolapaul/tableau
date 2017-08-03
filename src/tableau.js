@@ -9,7 +9,7 @@ let Tableau = function (config = {}) {
     config = $.extend(config, {
         minCellWidth: 240,
         bordered: true,
-        firstColumnWidth: 0
+        firstColumnWidth: null
     })
 
     console.log(config)
@@ -76,6 +76,9 @@ let Tableau = function (config = {}) {
             // allow for the fix-positioned header
             tbody.css('marginTop', thead.height())
 
+            // apply cell width for first column
+            firstCol.css({minWidth: config.firstColumnWidth == null? config.minCellWidth:config.firstColumnWidth})
+
             // enable listening
             scrollListen = true
         }
@@ -97,6 +100,8 @@ let Tableau = function (config = {}) {
             },
             styleOnly: misbehave
         }
+
+        // TODO: completely detach first column for easy floating
     })
 }
 if (typeof module != 'undefined' && module.exports) module.exports = Tableau

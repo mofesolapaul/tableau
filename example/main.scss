@@ -6,6 +6,12 @@ tr {
             &:hover {
                 background: lighten(orange, 10%) !important
             }
+            &.floating {
+                background: lighten(limegreen, 20%) !important;
+                &:hover {
+                    background: lighten(limegreen, 10%) !important
+                }
+            }
         }
     }
 }
