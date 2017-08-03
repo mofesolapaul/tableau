@@ -80,16 +80,22 @@ let Tableau = function (config = {}) {
             scrollListen = true
         }
 
+        // remove behaviours
+        function misbehave() {
+            scrollListen = false
+            firstCol.css({
+                left: 0
+            }).removeClass('floating')
+        }
+
         // attach refresh function to tableau
         tableau[0].tableau = {
             refresh: (newConfig = {}) => {
-                scrollListen = false
                 $.extend(config, newConfig)
-                firstCol.css({
-                    left: 0
-                }).removeClass('floating')
+                misbehave()
                 dimension()
-            }
+            },
+            styleOnly: misbehave
         }
     })
 }
