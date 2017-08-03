@@ -37,7 +37,7 @@ $(() => {
         tableau.scroll(function (e) {
             let _left = $(this).scrollLeft()
             let _top = $(this).scrollTop()
-            thead.css('left', -_left)
+            thead.css('top', _top)
             firstCol.css({
                 left: _left
             })
@@ -53,7 +53,7 @@ $(() => {
             cellWidth = cellWidth < minCellWidth ? minCellWidth : cellWidth // normalize width
             thtd.css('width', cellWidth)
             // allow for the fix-positioned header
-            inner.css('marginTop', thead.height())
+            tbody.css('marginTop', thead.height())
         }
     })
 })
