@@ -6,11 +6,12 @@ let Tableau = function (config = {}) {
     }
 
     // scan the config
-    $.extend({
+    config = $.extend({
         minCellWidth: 240,
         bordered: true,
         firstColumnWidth: null
     }, config)
+    console.log(config)
 
     // wrap tableaus in tableaus, and de-bleau them
     $('table.tableau').each(function (i, t) {
@@ -87,6 +88,9 @@ let Tableau = function (config = {}) {
         // remove behaviours
         function misbehave() {
             scrollListen = false
+            thead.css({
+                top: 0
+            })
             firstCol.css({
                 left: 0
             }).removeClass('floating')
@@ -95,7 +99,7 @@ let Tableau = function (config = {}) {
         // attach refresh function to tableau
         tableau[0].tableau = {
             refresh: (newConfig = {}) => {
-                $.extend(config, newConfig)
+                config = $.extend(config, newConfig)
                 misbehave()
                 dimension()
             },
