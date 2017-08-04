@@ -14,22 +14,27 @@ let Tableau = function (config = {}) {
     console.log(config)
 
     // wrap tableaus in tableaus, and de-bleau them
-    $('table.tableau').each(function (i, t) {
+    $('table.tableau, .tableau>.tableau-inner>table').each(function (i, t) {
+        // know if this is an already formatted tableau
+        let isBleau = $(this).parent().hasClass('tableau-inner') && $(this).parent().parent().hasClass('tableau')
+
         // props
         let cellWidth, thead, tbody, firstCol, colCount, thtd, scrollListen = false
 
         // clone the original table
-        let tableau = $('<div></div>').addClass('tableau')
-        let inner = $('<div></div>').addClass('tableau-inner')
-        let table = $(t).clone().removeClass('tableau')
+        let tableau = isBleau ? $(this).parent().parent() : $('<div></div>').addClass('tableau')
+        let inner = isBleau ? $(this).parent() : $('<div></div>').addClass('tableau-inner')
+        let table = isBleau ? $(t) : $(t).clone().removeClass('tableau')
 
         // place the tableau
-        table.appendTo(inner)
-        inner.appendTo(tableau)
-        tableau.insertBefore(t)
+        if (!isBleau) {
+            table.appendTo(inner)
+            inner.appendTo(tableau)
+            tableau.insertBefore(t)
 
-        // remove the original table
-        t.remove()
+            // remove the original table
+            t.remove()
+        }
 
         // do the dimensioning
         dimension()
@@ -79,7 +84,9 @@ let Tableau = function (config = {}) {
             tbody.css('marginTop', thead.height())
 
             // apply cell width for first column
-            firstCol.css({minWidth: config.firstColumnWidth == null? config.minCellWidth:config.firstColumnWidth})
+            firstCol.css({
+                minWidth: config.firstColumnWidth == null ? cellWidth : config.firstColumnWidth
+            })
 
             // enable listening
             scrollListen = true
