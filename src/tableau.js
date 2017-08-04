@@ -11,25 +11,24 @@ let Tableau = function (config = {}) {
         bordered: true,
         firstColumnWidth: null
     }, config)
-    console.log(config)
 
     // wrap tableaus in tableaus, and de-bleau them
-    $('table.tableau, .tableau>.tableau-inner>table').each(function (i, t) {
+    $('table.tableau, .tableau table').each(function (i, t) {
         // know if this is an already formatted tableau
-        let isBleau = $(this).parent().hasClass('tableau-inner') && $(this).parent().parent().hasClass('tableau')
+        let isBleau = $(this).parents('.tableau').length > 0
+        console.log($(this).parents('.tableau'))
 
         // props
         let cellWidth, thead, tbody, firstCol, colCount, thtd, scrollListen = false
 
         // clone the original table
-        let tableau = isBleau ? $(this).parent().parent() : $('<div></div>').addClass('tableau')
-        let inner = isBleau ? $(this).parent() : $('<div></div>').addClass('tableau-inner')
+        let tableau = isBleau ? $(this).parents('.tableau') : $('<div></div>').addClass('tableau')
+//        let inner = isBleau ? $(this).parent() : $('<div></div>').addClass('tableau-inner')
         let table = isBleau ? $(t) : $(t).clone().removeClass('tableau')
 
         // place the tableau
         if (!isBleau) {
-            table.appendTo(inner)
-            inner.appendTo(tableau)
+            table.appendTo(tableau)
             tableau.insertBefore(t)
 
             // remove the original table
